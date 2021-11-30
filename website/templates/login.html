@@ -1,0 +1,49 @@
+{% extends "Base.html" %}
+{% block title %}login{% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+
+                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Includes Roboto font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
+    <div id="loginDiv">
+        <h1>Login</h1>
+        <form method="POST">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="enter a username">
+                <input type="password" class="form-control" id="password" name="password" placeholder="password">
+            </div>
+            <button type="submit" id="loginButton" class="btn btn-default btn-lg">Login</button>
+        </form>
+    </div>
+{% endblock %}

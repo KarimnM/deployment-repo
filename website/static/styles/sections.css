@@ -1,0 +1,56 @@
+div[name='meetingTimesEntryDiv']
+{
+    margin: 0 auto;
+    display: block;
+}
+
+span[name='meetingTimesEntrySpan']
+{
+    display: flex;
+    align-items: center;
+}
+
+select[name='meetingDaySelector'], input[name='startTimeInput'], input[name='endTimeInput'], button[name='deleteMeetingTimeButton']
+{
+    margin: 1em auto;
+}
+
+
+#SectionInfoInputDiv, #CourseNameInputDiv
+{
+  text-size: 150%;
+  margin-top:  5em;
+  margin-left: 20em;
+  margin-right:20em;
+}
+
+#ExtraInfoForCourseTextDiv, #ExtraInfoForSectionTextDiv
+{
+  text-size: 125%;
+  text-align: center;
+}
+
+.btn-lg
+{
+  margin: 0 auto;
+  display: block;
+  transition-duration: 0.4s;
+  background-color: white;
+  border: 2px solid #4CAF50; /* Green */
+}
+.btn-lg:hover
+{
+    background-color: #4CAF50; /* Green */
+}
+
+.btn-lg:focus
+{
+    background-color: #4CAF50; /* Green */
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}

@@ -1,0 +1,75 @@
+{% extends "Base.html" %}
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+        {% else %}
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/assignments.css') }}">
+
+<form method="POST">
+        <div class="mb-3" id="AllMeetingsDiv">
+            {% for section, assignment in zip(sections, assignments) %}
+            <div class="AssignmentDiv">
+                {{section.deptAbbrev}}  {{section.courseNo}} ({{section.sectNo}})
+                <br>
+                {{assignment.Name}}
+                <br>
+                {{assignment.Description}}
+                <br>
+                Worth {{assignment.Points}} Points
+                <br>
+                Due {{assignment.readable_due_date()}}
+                <br>
+                <!--
+                Would you like to work on this assignment?
+                <br>
+                -->
+                <input type="checkbox" id="WorkingOnCheckBox" name="WorkingOnCheckBox" value="{{assignment.AssignmentID}}"
+                {% if assignment.AssignmentID in checked_assignment_ids %}
+                       checked
+                {% endif %}
+                >
+                <label for="WorkingOnCheckBox"> Want to work in group </label><br>
+                <!-- <input type="hidden" id="AssignmentID" name="AssignmentID" value="{{assignment.AssignmentID}}"> -->
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if assignments|length != 0 %}
+            <div>
+                <button type="submit" class="btn btn-default btn" id="SavePreferences" name="SavePreferences" value="SavePreferences"> Save Preferences </button>
+            </div>
+            <div> <span id="DontSeeAssignmentSpan"> Don't see an assignment? </span> </div>
+        {% else %}
+            <div> <span id="DontHaveAssignmentsSpan"> You don't have any assignments </span> </div>
+        {% endif %}
+
+        <div>
+            <button type="submit" class="btn btn-default btn-lg" id="AddAssignmentsButton" name="AddAssignmentsButton" value="AddAssignmentsButton"> Add Assignments </button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,18 @@
+
+#LogoutMessageDiv
+{
+    font-size: 150%;
+    display:table;
+    margin:0 auto;
+    margin-top: 25%;
+    margin-bottom: 5em;
+}
+
+#LogBackInDiv
+{
+    font-size: 100%;
+    display:table;
+    margin:0 auto;
+    margin-top: 5em;
+    margin-bottom: 5em;
+}

@@ -1,0 +1,66 @@
+{% extends "Base.html" %}
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+
+                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/Send_Invites.css') }}">
+
+    <form method="POST">
+        <div id="SendInviteDiv">
+            <h1> Choose the group you would like to invite the person too</h1>
+            <select name="GroupThatsInviting" class="form-select" aria-label="Default select example">
+                <option disabled selected>Choose a group</option>
+                {% for sgroup in Group_List %}
+                    <option value={{ sgroup.studyGroupID }}>{{ sgroup.groupNickname }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <br>
+            <h2>Select or input the Vnumber of the person you would like to invite</h2>
+            <input id="datalistinput" type="text" name="VNumberOfReceiver" list="ReceiverList"
+                   placeholder="Select or type the VNumber" style="width: 20em">
+            <datalist id="ReceiverList" name="ReceiverList">
+                <option disabled selected>Choose or enter the VNumber of the person you want to invite</option>
+                {% for i in list_of_people %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </datalist>
+            <div>
+                <button type="submit" id="SendTheInviteButton" class="btn btn-default btn-lg" name="SendTheInviteButton"
+                        value="SendTheInviteButton">Send the invite
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+
+
+
+
+{% endblock %}

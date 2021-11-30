@@ -1,0 +1,53 @@
+{% extends "Base.html" %}
+{% block title %}My Groups{% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+
+                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/mygroups.css') }}">
+
+    <form method="POST">
+        <div class="mb-3" id="AllStudyGroupsDiv">
+            {% for sgroup in Group_List %}
+
+                <div class="GroupDiv">
+                    <h1 id="title">Group Info</h1>
+                    <strong>Team Nickname: {{ sgroup.groupNickname }}</strong>
+                    <br>
+                    <strong>Preferred Method Of Communication: {{ sgroup.prefMethodOfComm }}</strong>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div><span id="CreateGroupSpan"> Want to create a group? </span></div>
+        <div>
+            <button type="submit" class="btn btn-default btn-lg" id="CreateGroupButton" name="CreateGroupButton"
+                    value="CreateGroupButton"> Create a group
+            </button>
+        </div>
+    </form>
+
+{% endblock %}

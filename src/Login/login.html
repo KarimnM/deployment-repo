@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!-- Includes Roboto font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="LoginDiv">
+            <div id="LogoContainerDiv">
+                <img src="../images/Study-Buddies-banner.jpeg" style='height: 100%; width: 100%; object-fit: contain'//>
+            </div>
+            <div class="LoginHeader">
+                Email
+            </div>
+            <div class="LoginTextBoxDiv">
+                <input type="text" class="LoginTextBox" id="EmailTextBox">
+            </div>
+            <div class="LoginHeader">
+                Password
+            </div>
+            <div class="LoginTextBoxDiv">
+                <input type="password" class="LoginTextBox" id="PasswordTextBox">
+            </div>
+            <div class="LoginInButtonDiv">
+                <input type="button" id="LogInButton" value="Log in" onclick="loginButtonIsClicked()">
+            </div>
+        </div>
+        <script src="./login.js"></script>
+    </body>
+</html>

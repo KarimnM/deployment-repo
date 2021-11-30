@@ -1,0 +1,48 @@
+
+
+body {
+    padding: 0;
+    margin: 0;
+    white-space:nowrap;
+}
+
+#TitleBarLogo {
+max-height:70px;
+width:auto;
+display: block;
+}
+
+
+#TitleBar {
+    width: 100%;
+    top: 0;
+    background: #77BC3F;
+    position: sticky;
+}
+
+
+<!--
+
+font-family: 'Roboto', sans-serif;
+font-size: 300%;
+font-weight: 700;
+color: black;
+
+
+p{
+    color:white;
+    background: red;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: italic;
+}
+.box {
+width: 100px;
+height: 100px;
+background: green;
+margin: 10px;
+padding: 10px;
+border: 2px solid darkred;
+}
+
+-->

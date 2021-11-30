@@ -1,0 +1,259 @@
+
+.timetable * {
+	 box-sizing: border-box;
+}
+
+.calendarSquare
+{
+    position: relative;
+}
+
+.eventDiv
+{
+    transition: 0.2s ease box-shadow, 0.2s ease transform;
+    z-index: 4;
+}
+
+
+ .timetable {
+	 display: grid;
+	 grid-template-areas: ". week" "time content";
+	 grid-template-columns: 120px;
+	 grid-template-rows: 60px;
+	 margin: 10vh auto;
+	 width: 80vw;
+	 height: 80vh;
+}
+
+ .timetable .weekend {
+	 background: #fbfbfc;
+	 color: #87a1ad;
+}
+ .timetable .week-names {
+     font-family: 'Karla';
+	 grid-area: week;
+	 display: grid;
+	 grid-template-columns: repeat(5, 1fr);
+	 text-transform: uppercase;
+	 font-size: 12px;
+}
+ .timetable .week-names > div {
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 width: 100%;
+	 height: 100%;
+	 box-shadow: inset 1px 0 0 #eceff1;
+}
+ .timetable .time-interval {
+     font-family: 'Karla';
+	 grid-area: time;
+	 display: grid;
+	 grid-template-rows: repeat(6, 1fr);
+	 font-size: 14px;
+}
+ .timetable .time-interval > div {
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 width: 100%;
+	 height: 100%;
+	 box-shadow: inset 0 1px 0 0 #eceff1;
+}
+ .timetable .content {
+	 grid-area: content;
+	 display: grid;
+	 grid-template-rows: repeat(6, 1fr);
+	 grid-template-columns: repeat(5, 1fr);
+}
+ .timetable .content > div {
+	 box-shadow: inset 1px 0 0 #eceff1, inset 0 1px 0 0 #eceff1;
+}
+
+.btn-lg
+{
+  margin: 0 auto;
+  display: block;
+  transition-duration: 0.4s;
+  background-color: white;
+  border: 2px solid #4CAF50; /* Green */
+}
+
+.btn-lg:hover
+{
+    background-color: #4CAF50; /* Green */
+}
+
+.btn-lg:focus
+{
+    background-color: #4CAF50; /* Green */
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.form-select:focus
+{
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.StudyGroupSelectDiv
+{
+    margin: 0 auto;
+    width: 50%;
+    padding: 1em 1em 1em 1em;
+}
+
+.TitleDiv
+{
+    margin: 0 auto;
+    text-align: center;
+    font-size: x-large;
+    padding: 1em 1em 1em 1em;
+}
+
+.ScheduleMeetingButtonDiv
+{
+    margin-top:1em;
+    margin-bottom:1em;
+}
+
+#RequiredStudyToolsDiv
+{
+    margin: 0 auto;
+    border-style: outset;
+    width: 50%;
+    margin-top: 1em;
+}
+
+#AddressList{
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#AddressList li a {
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 0.5em; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: medium; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: block; /* Make it into a block element to fill the whole list */
+}
+
+#AddressList li a:hover:not(.header) {
+  background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+
+#AddressListDiv
+{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#RequiredStudyToolsTitle
+{
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+#RequiredStudyToolsCheckboxes
+{
+    margin: auto 0;
+    display: block;
+}
+
+.checkboxDiv
+{
+    margin: auto;
+    display: block;
+    position: relative;
+    /*
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    */
+    width: 50%;
+    /*background: red;*/
+}
+
+#AddressInputDiv
+{
+    margin: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    width: 50%;
+}
+
+#LinkInputDiv
+{
+    margin: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    width: 25%;
+}
+
+#MeetingTimeInputDiv
+{
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+#MeetingTimeInputSpan
+{
+    display: inline-block;
+    /* margin: 0 auto; */
+}
+
+.form-control
+{
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+
+.flex-container {
+    display: flex;
+}
+.flex-child {
+    flex: 1;
+    /*border: 2px solid black;*/
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+#TypeOfMeetingDiv
+{
+    display:block;
+    margin: 0 auto;
+    width: 15%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#InPersonInputDiv, #OnlineInputDiv
+{
+    display: none;
+}
+
+.studyToolCheckbox
+{
+    color: green;
+}

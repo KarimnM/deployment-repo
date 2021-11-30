@@ -1,0 +1,70 @@
+{% extends "Base.html" %}
+{% block title %}Create a Group{% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+
+                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+
+                        </button>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {#    <meta charset="utf-8">#}
+    {#    <title></title>#}
+    {#    <!-- Includes Roboto font -->#}
+    {#    <link rel="preconnect" href="https://fonts.googleapis.com">#}
+    {#    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>#}
+    {#    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">#}
+    {#        <link rel="stylesheet" href="style.css">#}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/Create_Study_Group.css') }}">
+
+    <form method="POST">
+        <div id="GroupInfoDiv">
+            <input type="text" class="form-control" id="StudyGroupName" name="StudyGroupName"
+                   placeholder="Study Group Name">
+            <select id="MethodOfCommunication" name="MethodOfCommunication" class="form-select"
+                    aria-label="Default select example">
+                <option disabled selected>Choose a preferred method of communication</option>
+                <option value="Email">Email</option>
+                <option value="Discord">Discord</option>
+                <option value="Slack">Slack</option>
+                <option value="Phone Call">Phone Call</option>
+                <option value="Zoom">Zoom</option>
+                <option value="Skype">Skype</option>
+                <option value="Text">Text</option>
+                <option value="HAM Radio">HAM Radio</option>
+                <option value="Telegraph">Telegraph</option>
+                <option value="USPS">USPS</option>
+                <option value="Carrier Pigeon">Carrier Pigeon</option>
+                <option value="Clay Tablet">Clay Tablet</option>
+                <option value="Yelling Really Loudly">Yelling Really Loudly</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" id="CreateTheGroupButton" class="btn btn-default btn-lg" name="CreateTheGroupButton"
+                    value="CreateTheGroupButton">Create The Study Group
+            </button>
+        </div>
+
+
+    </form>
+{% endblock %}

@@ -1,0 +1,31 @@
+DROP PROCEDURE IF EXISTS populate_assigns_procedure;
+delimiter //
+CREATE PROCEDURE populate_assigns_procedure()
+BEGIN
+	INSERT INTO assigns VALUES (798, 'OCCT', 730, 6);
+	INSERT INTO assigns VALUES (798, 'OCCT', 730, 2);
+	INSERT INTO assigns VALUES (798, 'OCCT', 730, 4);
+	INSERT INTO assigns VALUES (434, 'FREN', 660, 6);
+	INSERT INTO assigns VALUES (434, 'FREN', 660, 9);
+	INSERT INTO assigns VALUES (434, 'FREN', 660, 1);
+	INSERT INTO assigns VALUES (434, 'FREN', 660, 7);
+	INSERT INTO assigns VALUES (493, 'HPEX', 925, 1);
+	INSERT INTO assigns VALUES (493, 'HPEX', 925, 7);
+	INSERT INTO assigns VALUES (493, 'HPEX', 925, 6);
+	INSERT INTO assigns VALUES (493, 'HPEX', 925, 8);
+	INSERT INTO assigns VALUES (212, 'PAPR', 470, 6);
+	INSERT INTO assigns VALUES (212, 'PAPR', 470, 5);
+	INSERT INTO assigns VALUES (199, 'APPM', 656, 2);
+	INSERT INTO assigns VALUES (199, 'APPM', 656, 3);
+	INSERT INTO assigns VALUES (199, 'APPM', 656, 5);
+	INSERT INTO assigns VALUES (675, 'SCMA', 446, 9);
+	INSERT INTO assigns VALUES (726, 'SLWK', 382, 8);
+	INSERT INTO assigns VALUES (726, 'SLWK', 382, 7);
+	INSERT INTO assigns VALUES (301, 'PHTO', 893, 7);
+	INSERT INTO assigns VALUES (660, 'PSYC', 551, 4);
+	INSERT INTO assigns VALUES (660, 'PSYC', 551, 8);
+	INSERT INTO assigns VALUES (421, 'EGMN', 183, 9);
+	INSERT INTO assigns VALUES (421, 'EGMN', 183, 3);
+	INSERT INTO assigns VALUES (421, 'EGMN', 183, 6);
+END //
+delimiter ;

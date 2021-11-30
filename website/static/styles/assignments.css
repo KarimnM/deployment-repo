@@ -1,0 +1,81 @@
+#AllAssignmentsDiv
+{
+    /* margin-top: 5em; Maybe more this to the Assignment Div*/
+}
+
+.AssignmentDiv
+{
+    background-color: #77BB3F;
+    border-radius: 1.25em;
+    padding: 2.5em;
+    margin-left: 20em;
+    margin-right:20em;
+    margin-top:2.5em;
+    margin-bottom:2.5em;
+}
+
+#SavePreferences{
+    display:table;
+    margin:0 auto;
+    margin-bottom: 1.25em;
+}
+#SavePreferences
+{
+  margin: 0 auto;
+  display: block;
+  transition-duration: 0.4s;
+  background-color: white;
+  border: 2px solid #4CAF50; /* Green */
+  margin-bottom: 2.5em;
+}
+#SavePreferences:hover
+{
+    background-color: #4CAF50; /* Green */
+}
+
+#SavePreferences:focus
+{
+    background-color: #4CAF50; /* Green */
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+#DontSeeAssignmentSpan
+{
+    display:table;
+    margin:0 auto;
+    margin-bottom: 1.25em;
+}
+
+#DontHaveAssignmentsSpan
+{
+    display:table;
+    margin:0 auto;
+    margin-bottom: 1.25em;
+}
+
+#AddAssignmentsButton
+{
+  margin: 0 auto;
+  display: block;
+  transition-duration: 0.4s;
+  background-color: white;
+  border: 2px solid #4CAF50; /* Green */
+  margin-bottom: 2.5em;
+}
+#AddAssignmentsButton:hover
+{
+    background-color: #4CAF50; /* Green */
+}
+
+#AddAssignmentsButton:focus
+{
+    background-color: #4CAF50; /* Green */
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}

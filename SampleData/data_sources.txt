@@ -1,0 +1,14 @@
+Filename               Description                                         Source
+--------               -----------                                         ------
+StudentData\           Directory that contains data for student entities
+first-names.txt        List of first names                                 https://github.com/arineng/arincli/blob/master/lib/last-names.txt
+last-names.txt         List of last names                                  https://github.com/dominictarr/random-name/blob/master/first-names.txt
+passwords.txt          Subset of the RockYou dataset                       https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+housing_addresses.txt  List of VCU Residence Centers' Addresses            https://maps.vcu.edu/monroepark/list.html
+
+CourseData\            Directory for data about Course entities
+courses.txt            List of courses pulled with webscraper              http://bulletin.vcu.edu/azcourses/
+
+StudyGroupData\        Directory for data about Study Group entities
+methods-of-comm.txt    List of various methods of communication            N/A
+group-nicknames.txt    List of team names                                  https://ideasfornames.com/cool-unique-team-names-perfect-for-your-group/

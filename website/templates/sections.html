@@ -1,0 +1,51 @@
+{% extends "Base.html" %}
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+        {% else %}
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/sections.css') }}">
+
+<form method="POST">
+        <div class="mb-3" id="SectionInfoInputDiv">
+
+            <h6>Department Abbreviation (4 letters)</h6>
+            <input type="text" class="form-control" id="deptAbbrev" name="deptAbbrev" value='{{ form_values.get("deptAbbrev","") }}' placeholder="CMSC" maxlength="4" style="text-transform:uppercase" pattern="[A-Za-z]{4}">
+            <br>
+
+            <h6>Course Number</h6>
+            <input type="number" min="0" max="1000" class="form-control" id="courseNum" name="courseNum" placeholder="508" value='{{ form_values.get("courseNum","") }}'>
+            <br>
+
+            <h6>Section Number</h6>
+            <input type="number" min="0" class="form-control" id="sectionNum" name="sectionNum" placeholder="1" value='{{ form_values.get("sectionNum","") }}'>
+            <br>
+
+            <button type="submit" class="btn btn-default btn-lg" id="AddSectionButton"> Add Course </button>
+        </div>
+    </form>
+{% endblock %}

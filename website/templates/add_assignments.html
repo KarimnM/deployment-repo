@@ -1,0 +1,79 @@
+{% extends "Base.html" %}
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+        {% else %}
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/add_assignments.css') }}">
+
+<form method="POST">
+
+    {% if sections %}
+    <div id="AssignmentInfoInputDiv">
+        <h6>Section</h6>
+        <select class="form-select" aria-label="Default select example" name="SectionSelector">
+            {% for section in sections %}
+                <option value="{{section.deptAbbrev}}|{{section.courseNo}}|{{section.sectNo}}"
+                        {% if form_values.get("SectionSelector","") == section.deptAbbrev + "|" ~ section.courseNo ~ "|" ~ section.sectNo %}
+                            selected
+                        {% endif %}
+                >
+                    {{section.deptAbbrev}} {{section.courseNo}}, {{section.sectNo}}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br>
+        <h6>Assignment Name</h6>
+        <input type="text" class="form-control" maxlength="50" minlength="1" id="AssignmentName" name="AssignmentName" placeholder="Homework 5" value='{{ form_values.get("AssignmentName","") }}'>
+
+        <br>
+        <h6>Assignment Description</h6>
+        <textarea name="AssignmentDescription" maxlength="490" minlength="1" rows="6"> {{ form_values.get("AssignmentDescription","") }}</textarea>
+        <br>
+        <br>
+        <h6>Points</h6>
+        <input type="number" min="0" class="form-control" id="AssignmentPoints" name="AssignmentPoints" placeholder="10" value='{{ form_values.get("AssignmentPoints","") }}'>
+
+        <br>
+        <h6>Due Date</h6>
+        <input type="datetime-local" id="DueDateInput" name="DueDateInput">.
+
+
+        <div style="height:5em;"></div>
+        <div>
+            <button type="submit" class="btn btn-default btn-lg" name="CreateAssignmentButton" value="CreateAssignmentButton">Create Assignment</button>
+        </div>
+    </div>
+
+    {% else %}
+    <div><span id="NoCoursesSpan">You haven't added any courses yet . . .</span></div>
+    <div>
+        <button type="submit" class="btn btn-default btn-lg" name="AddCourseButton" value="AddCourseButton">Add Courses</button>
+    </div>
+    {% endif %}
+    </form>
+{% endblock %}

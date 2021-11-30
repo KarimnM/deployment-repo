@@ -1,0 +1,55 @@
+{% extends "Base.html" %}
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+        {% else %}
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/sections.css') }}">
+
+<script src= "{{ url_for('static',filename='scripts/new_section.js') }}"></script>
+
+<form method="POST">
+        <div class="mb-3" id="SectionInfoInputDiv">
+            <div id="ExtraInfoForSectionTextDiv">
+                You are the first person to add this section! <br>
+                Please add some extra information. <br>
+                <br>
+            </div>
+
+            <h6>Section Classroom Address</h6>
+            <input type="text" class="form-control" id="meetingAddress" name="meetingAddress" placeholder="401 W. Main St. Richmond, VA 23284" value='' required>
+            <br>
+
+            <button type="button" onclick="AddMeetingTimeEntry()">Add Meeting Time</button>
+            <div id="AddMeetingTimeDiv">
+                <!-- This is where the meeting time inputs will be dynamically added -->
+            </div>
+            <br>
+            <button type="submit" class="btn btn-default btn-lg" id="AddSectionButton">Create New Section</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,80 @@
+
+
+#AllInvitesDiv
+{
+    /* margin-top: 5em; Maybe more this to the Assignment Div*/
+}
+
+.StudyGroupInviteDiv
+{
+    border-color: #111111;
+    border-width:2px;
+    border-style:outset;
+
+    border-radius: 0.5em;
+    padding: 1em;
+    margin-left: 20em;
+    margin-right:20em;
+    margin-top:2.5em;
+    margin-bottom:2.5em;
+    position: relative;
+}
+
+.btn-default[name='AcceptButton']
+{
+    transition-duration: 0.4s;
+    background-color: white;
+    border: 2px solid #4CAF50; /* Green */
+}
+
+.btn-default[name='RejectButton']
+{
+    transition-duration: 0.4s;
+    background-color: white;
+    border: 2px solid #AF4C4C; /* Red */
+}
+
+.btn-default[name='AcceptButton']:hover {
+    background-color: #4CAF50; /* Green */
+}
+
+.btn-default[name='RejectButton']:hover {
+    background-color: #AF4C4C; /* Red */
+}
+
+.btn-default[name='AcceptButton']:focus {
+  border-color: #4CAF50;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.btn-default[name='RejectButton']:focus {
+  border-color: #AF4C4C;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(175, 76, 76, 0.6);
+}
+
+#WantToSendAnInviteId
+{
+    display:table;
+    margin: 0 auto;
+
+}
+
+#SendInviteButton
+{
+  margin: 0 auto;
+  display: block;
+  transition-duration: 0.4s;
+  background-color: white;
+  border: 2px solid #4CAF50; /* Green */
+  margin-bottom: 2.5em;
+}
+#SendInviteButton:hover
+{
+    background-color: #4CAF50; /* Green */
+}
+
+#SendInviteButton:focus {
+    background-color: #4CAF50; /* Green */
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}

@@ -1,0 +1,21 @@
+
+/*
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+*/
+
+.navbar-container
+{
+    margin: auto;
+    display: inline-block;
+    width: 97.5%;
+}

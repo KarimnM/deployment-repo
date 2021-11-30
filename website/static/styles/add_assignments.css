@@ -1,0 +1,75 @@
+#AssignmentInfoInputDiv
+{
+  margin-top:  5em;
+  margin-left: 20em;
+  margin-right:20em;
+}
+
+#DueDateInput
+{
+
+}
+
+#DueDateInput:focus {
+    outline: none !important;
+    border-color: #4CAF50;
+    border-width: 1px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+
+textarea {
+     width: 100%;
+     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+     box-sizing: border-box;         /* Opera/IE 8+ */
+     border-color:#CED4DA;
+     border-radius: 0.25em;
+     padding-left: 0.75em;
+     padding-right: 0.75em;
+     padding-top: 0.5em;
+     padding-bottom: 0.5em;
+}
+
+textarea:focus
+{
+    outline: none !important;
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.form-select:focus
+{
+    border-color: #4CAF50;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+#NoCoursesSpan
+{
+    display:table;
+    margin:0 auto;
+    margin-bottom: 1.25em;
+}
+
+.btn-lg
+{
+    margin: 0 auto;
+    display: block;
+    transition-duration: 0.4s;
+    background-color: white;
+    border: 2px solid #4CAF50; /* Green */
+}
+
+.btn-lg:hover {
+    background-color: #4CAF50; /* Green */
+}
+
+.btn-lg:focus {
+  border-color: #4CAF50;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}

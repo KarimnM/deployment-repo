@@ -1,0 +1,66 @@
+body {
+    padding: 0;
+    margin: 0;
+    white-space:nowrap;
+    background: #a5c4ad;
+}
+
+
+.LoginDiv
+{
+    position: absolute;
+    top: 30%;
+    left: 37.5%;
+    background: #77BB3F;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 25%;
+    height: auto;
+    min-width: 200px;
+    box-shadow: 10px 10px #888888;
+}
+
+.LoginTextBoxDiv
+{
+    // margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    top: 50%;
+}
+.LoginHeader
+{
+    font-family: 'Roboto';
+    font-size: 100%;
+    // font-weight: bold;
+    font-style: italic;
+    display: flex;
+    padding-top: 10%;
+    padding-left: 10%;
+    color: white;
+}
+
+.LoginTextBox
+{
+    font-family: 'Roboto';
+    background: #DDDDDD;
+    border-radius: 15px;
+    padding-left: 10px;
+    width: 80%;
+    height: 25px;
+}
+
+#LogInButton
+{
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 130%;
+    margin: 10%;
+    background: #325c3e;
+    color: #F7F7F6;
+    width: 32%;
+    height: 35px;
+    border-radius: 5px;
+}

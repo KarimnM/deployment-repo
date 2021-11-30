@@ -1,0 +1,164 @@
+{% extends "Base.html" %}
+{% block title %}request{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+                <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% else %}
+                <div class="alert alert-success alert-dismissable fade show" role="alert">
+                            {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/styles/create_meeting.css" />
+
+<script>
+    // console.log("Testing 123");
+    var study_groups = {{study_groups|tojson}};
+    // console.log(study_groups);
+    var study_groups_meeting_times = {{study_groups_meeting_times|tojson}};
+    // console.log(study_groups_meeting_times);
+    var study_tools = {{study_tools|tojson}};
+</script>
+<script src= "../static/scripts/create_meeting.js"></script>
+
+
+<div class="TitleDiv">
+    Create Meeting
+</div>
+
+<form method="POST">
+    <div class="InputElements">
+
+        <div class="StudyGroupSelectDiv">
+            <select id="StudyGroupSelect" name="StudyGroupSelect" class="form-select" aria-label="Default select example" onchange="populateCalendarOnSelect(this)">
+                <option disabled selected>Choose a group</option>
+                {% for study_group in study_groups %}
+                    <option value={{study_group["studyGroupID"]}}>{{study_group["groupNickname"]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="timetable">
+            <div class="week-names">
+                <div>monday</div>
+                <div>tuesday</div>
+                <div>wednesday</div>
+                <div>thursday</div>
+                <div>friday</div>
+            </div>
+            <div class="time-interval">
+                <div>8:00 - 10:00</div>
+                <div>10:00 - 12:00</div>
+                <div>12:00 - 14:00</div>
+                <div>14:00 - 16:00</div>
+                <div>16:00 - 18:00</div>
+                <div>18:00 - 20:00</div>
+            </div>
+            <div class="content">
+                {%for _ in range(30)%}
+                    <div class="calendarSquare"></div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="MeetingTimeInputDiv">
+            <span id="MeetingTimeInputSpan">
+                Meeting Date:
+                <input type="date" name="dateInput" required style="margin-right: 2em;">
+                Meeting Start:
+                <input type="time" name="startTimeInput" required style="margin-right: 2em;">
+                Meeting End:
+                <input type="time" name="endTimeInput" required>
+            </span>
+        </div>
+
+        <div id="TypeOfMeetingDiv">
+            Type Of Meeting<br>
+            <select id="MeetingTypeSelect" name="MeetingTypeSelect" class="form-select" aria-label="Default select example" onchange="showMeetingTypeOptions(this)" required>
+                <option disabled selected>Choose a meeting type</option>
+                    <option value='In-Person'>In-Person</option>
+                    <option value='Online'>Online</option>
+            </select>
+        </div>
+
+
+        <div id='InPersonInputDiv' class="flex-container">
+            <div class="flex-child">
+                <div id="RequiredStudyToolsDiv">
+                    <div id="RequiredStudyToolsTitle">
+                        <b>Required Study Tools</b>
+                    </div>
+                    <div id="RequiredStudyToolsCheckboxes">
+                        {% for tool in all_study_tools %}
+                            <div class="checkboxDiv">
+                                <label for="{{tool}}Checkbox" class="studyToolCheckboxLabel">
+                                    <input class="studyToolCheckbox" type="checkbox" id="{{tool}}Checkbox"
+                                           name="{{tool}}" value="{{tool}}" onchange="filterAddressListByAvailableStudyTools()">
+                                    {{tool}}
+                                </label><br>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="AddressInputDiv">
+                    <input id="AddressInputTextBox" type="text" name="AddressInputTextBox" class="form-control"
+                           placeholder="Address of meeting">
+                </div>
+
+                <div class="ScheduleMeetingButtonDiv">
+                    <button type="submit" class="btn btn-default btn-lg" id="ScheduleInPersonMeetingButton">Schedule Meeting</button>
+                </div>
+            </div>
+
+
+            <div class="flex-child">
+                <div id="AddressListDiv">
+                    <ul id="AddressList">
+                        {% for address_and_tools in study_tools %}
+                              <li><a href="#/" class="Address" data-value='{{address_and_tools["address"]}}'
+                                     onclick='setAddressInputText(this.dataset.value);'>
+                                     {{address_and_tools["address"]}}
+                                  </a>
+                              </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id='OnlineInputDiv'>
+            <div id="LinkInputDiv">
+                <input id="LinkInputTextBox" name="LinkInputTextBox" type="text" class="form-control"
+                       placeholder="Enter the link to the meeting">
+            </div>
+            <div class="ScheduleMeetingButtonDiv">
+                <button type="submit" class="btn btn-default btn-lg" id="ScheduleOnlineMeetingButton">Schedule Meeting</button>
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+{% endblock %}

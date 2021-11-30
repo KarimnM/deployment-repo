@@ -1,0 +1,69 @@
+{% extends "Base.html" %}
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+        {% else %}
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+
+            </button>
+        </div>
+
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/meetings.css') }}">
+
+<form method="POST">
+        <div class="mb-3" id="AllMeetingsDiv">
+            {% for meeting in meetings %}
+            <div class="MeetingDiv">
+                {{meeting.group_name}}
+                <br>
+                {{meeting.duration_to_str()}}
+                <br>
+                {% if meeting.get_meeting_type() == 'In-Person' %}
+                    {{meeting.get_meeting_type()}} at {{meeting.get_meeting_location()}}
+                    <br>
+                    <a target="_blank"
+                       rel="noopener noreferrer"
+                       href="https://maps.google.com/?q={{meeting.get_meeting_location()}}">
+                        Get directions
+                    </a>
+                {% elif meeting.get_meeting_type() == 'Online' %}
+                    {{meeting.get_meeting_type()}} at
+                    <a target="_blank"
+                       rel="noopener noreferrer"
+                       href="{{meeting.get_meeting_location()}}">
+                        {{meeting.get_meeting_location()}}
+                    </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if meetings|length == 0 %}
+            <div> <span id="NoUpcomingMeetingsSpan"> You don't have any upcoming meetings </span> </div>
+        {% endif %}
+
+        <div>
+            <button type="submit" class="btn btn-default btn-lg" id="ScheduleMeetingButton" name="ScheduleMeetingButton" value="ScheduleMeetingButton"> Schedule a Meeting </button>
+        </div>
+    </form>
+{% endblock %}
