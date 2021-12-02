@@ -19,10 +19,8 @@
                         {{ message }}
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
-
                         </button>
                     </div>
-
                 {% endif %}
             {% endfor %}
         {% endif %}
@@ -34,10 +32,35 @@
             {% for sgroup in Group_List %}
 
                 <div class="GroupDiv">
-                    <h1 id="title">Group Info</h1>
-                    <strong>Team Nickname: {{ sgroup.groupNickname }}</strong>
+                    <h1 id="title">{{ sgroup.groupNickname }}</h1>
+                    <!-- <strong>Team Nickname: {{ sgroup.groupNickname }}</strong> -->
                     <br>
                     <strong>Preferred Method Of Communication: {{ sgroup.prefMethodOfComm }}</strong>
+                    <br>
+                    {% for meeting_type in meeting_type_frequency[sgroup.studyGroupID] %}
+                    {{meeting_type}} Meetings: {{meeting_type_frequency[sgroup.studyGroupID][meeting_type]}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {%endfor%}
+                    <br>
+                    {{ users_in_same_groups[sgroup.studyGroupID] | length }}
+                    {% if users_in_same_groups[sgroup.studyGroupID] | length == 1 %}
+                    member:
+                    {% else %}
+                    members:
+                    {% endif %}
+
+                    <br>
+                    <table class="usernameTable">
+                        <tr>
+                    {% for username in users_in_same_groups[sgroup.studyGroupID] %}
+                            <th> {{username}} </th>
+                        {% if (loop.index % 4 == 0) and (loop.index != users_in_same_groups[sgroup.studyGroupID]|length) %}
+                            </tr>
+                            <tr>
+                        {% endif %}
+                    {%endfor%}
+                        </tr>
+                        </table>
                 </div>
             {% endfor %}
         </div>

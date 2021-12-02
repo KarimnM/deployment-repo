@@ -108,17 +108,26 @@
                         <b>Required Study Tools</b>
                     </div>
                     <div id="RequiredStudyToolsCheckboxes">
-                        {% for tool in all_study_tools %}
-                            <div class="checkboxDiv">
-                                <label for="{{tool}}Checkbox" class="studyToolCheckboxLabel">
-                                    <input class="studyToolCheckbox" type="checkbox" id="{{tool}}Checkbox"
-                                           name="{{tool}}" value="{{tool}}" onchange="filterAddressListByAvailableStudyTools()">
-                                    {{tool}}
-                                </label><br>
-                            </div>
-                        {% endfor %}
+                        <div class="checkboxDiv">
+                            <table id="checkboxTable"> <tr>
+                            {% for tool in all_study_tools %}
+                                <td>
+                                    <label for="{{tool}}Checkbox" class="studyToolCheckboxLabel">
+                                        <input class="studyToolCheckbox" type="checkbox" id="{{tool}}Checkbox"
+                                               name="{{tool}}" value="{{tool}}" onchange="filterAddressListByAvailableStudyTools()">
+                                        {{tool}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </label>
+                                </td>
+                                {% if loop.index % 2 == 0 and loop.index != all_study_tools | length%}
+                                </tr><tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
                 <div id="AddressInputDiv">
                     <input id="AddressInputTextBox" type="text" name="AddressInputTextBox" class="form-control"
                            placeholder="Address of meeting">

@@ -127,8 +127,10 @@
 {
     margin: 0 auto;
     border-style: outset;
-    width: 50%;
+    width: 35%;
     margin-top: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 #AddressList{
@@ -176,16 +178,27 @@
 
 .checkboxDiv
 {
+
     margin: auto;
     display: block;
     position: relative;
+    text-align: left;
     /*
     display: flex;
     justify-content: center;
     align-items: center;
     */
-    width: 50%;
+    /*width: 50%;*/
     /*background: red;*/
+}
+
+#checkboxTable
+{
+    margin: 0 auto;
+}
+
+.studyToolCheckboxLabel
+{
 }
 
 #AddressInputDiv
@@ -251,9 +264,4 @@
 #InPersonInputDiv, #OnlineInputDiv
 {
     display: none;
-}
-
-.studyToolCheckbox
-{
-    color: green;
 }

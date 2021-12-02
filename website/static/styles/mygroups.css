@@ -7,6 +7,8 @@
     margin-right:20em;
     margin-top:2.5em;
     margin-bottom:2.5em;
+
+    box-shadow: 0.25em 0.25em;
 }
 #title{
     text-align: center;
@@ -40,4 +42,12 @@
     background-color: #4CAF50; /* Green */
     border-color: #4CAF50;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+
+.usernameTable
+{
+    /* background: blue; */
+    width: 100%;
+    text-align: center
 }

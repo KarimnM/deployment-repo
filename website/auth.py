@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from flask import Blueprint, render_template, flash, request, session
 import flask
 from flask import Blueprint, render_template, flash, request, url_for
@@ -299,8 +301,74 @@ def get_upcoming_meetings_for_vnumber(vnumber: str):
     return meetings
 
 
-def flag_meetings_with_conflicting_schedules(meetings: list[db_entities.Meeting]):
-    is_conflicting_list = [False] * len(meetings)
+def get_types_of_meetings_frequency_for_study_group(study_group_id: int):
+    meeting_types_sql = '''
+        SELECT meetingType, COUNT(*) AS numMeetings
+        FROM (
+        SELECT meetingType
+        FROM ( SELECT meetingID FROM meets WHERE studyGroupID=%s) AS temp1
+        NATURAL JOIN meeting
+        NATURAL JOIN
+        (select meetingID, "Online" as meetingType, meetingURL AS "location" 
+        FROM onlinemeeting 
+        UNION ALL 
+        SELECT meetingID, "In-Person" AS meetingType, meetingLocationAddress AS "location" 
+        FROM inpersonmeeting) as temp2) AS temp3
+        GROUP BY meetingType;
+        '''
+
+    meeting_types_values = (study_group_id,)
+    cur = conn.cursor()
+    cur.execute(meeting_types_sql, meeting_types_values)
+    results = cur.fetchall()
+    cur.close()
+
+    meeting_type_freq = dict()
+    for row in results:
+        meeting_type = row[0]
+        meeting_freq = int(row[1])
+        meeting_type_freq[meeting_type] = meeting_freq
+    return meeting_type_freq
+
+
+def get_users_in_same_groups(vnumber: str):
+    get_users_sql = '''
+        SELECT studyGroupID, username 
+        FROM (SELECT studyGroupID FROM groupmembership WHERE VNumber=%s) as temp
+        NATURAL JOIN groupmembership
+        NATURAL JOIN student;
+        '''
+    get_users_values = (vnumber, )
+    cur = conn.cursor()
+    cur.execute(get_users_sql, get_users_values)
+    results = cur.fetchall()
+    cur.close()
+
+    users_in_group = defaultdict(list)
+    for row in results:
+        study_group_id = int(row[0])
+        username = row[1]
+        users_in_group[study_group_id].append(username)
+    return users_in_group
+
+
+def times_overlap(start1: datetime.datetime, end1: datetime.datetime,
+                  start2: datetime.datetime, end2: datetime.datetime):
+    return start1 < start2 < end1 or \
+           start1 < end2 < end1
+
+
+def get_meetings_conflicts(meetings: list[db_entities.Meeting]):
+    conflicts_list = [[] for _ in range(len(meetings))]
+    for i in range(len(meetings) - 1):
+        for j in range(i + 1, len(meetings)):
+            meeting1 = meetings[i]
+            meeting2 = meetings[j]
+            if times_overlap(meeting1.start_time, meeting1.end_time,
+                             meeting2.start_time, meeting2.end_time):
+                conflicts_list[i] += [meeting2]
+                conflicts_list[j] += [meeting1]
+    return conflicts_list
 
 
 def student_wants_to_work_on_assignment(vnumber: str, assignment_id: int, commit=False) -> bool:
@@ -424,7 +492,10 @@ def create_study_group():
 
 @auth.route('/createAccount', methods=['GET', 'POST'])
 def createAccount():
-    if request.method == 'POST':
+    if request.method == 'GET':
+        return render_template("createAccount.html", form=dict())
+
+    elif request.method == 'POST':
         firstName = request.form.get('firstName')
         lastName = request.form.get('lastName')
         email = request.form.get('email')
@@ -471,8 +542,9 @@ def createAccount():
             finally:
                 cur.close()
             flash('Your account has been created', category='success')
+            return flask.redirect(flask.url_for('auth.login'))
 
-    return render_template("createAccount.html")
+        return render_template("createAccount.html", form=request.form)
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -1007,8 +1079,18 @@ def my_groups():
         sgroup = db_entities.StudyGroup(row[0], row[1], int(row[2]))
         Group_List.append(sgroup)
 
+    study_group_meeting_type_frequency = dict()
+    for study_group in Group_List:
+        study_group_meeting_type_frequency[study_group.studyGroupID] = \
+            get_types_of_meetings_frequency_for_study_group(study_group.studyGroupID)
+
+    users_in_same_groups = get_users_in_same_groups(v_number)
+
+
     if request.method == 'GET':
-        return render_template('mygroups.html', Group_List=Group_List)
+        return render_template('mygroups.html', Group_List=Group_List,
+                               meeting_type_frequency=study_group_meeting_type_frequency,
+                               users_in_same_groups=users_in_same_groups)
 
     if request.method == 'POST':
         if 'CreateGroupButton' in request.form:
@@ -1133,8 +1215,10 @@ def view_meetings():
 
     upcoming_meetings = get_upcoming_meetings_for_vnumber(v_number)
 
+    meeting_conflicts = get_meetings_conflicts(upcoming_meetings)
+
     if request.method == 'GET':
-        return render_template('meetings.html', meetings=upcoming_meetings)
+        return render_template('meetings.html', meetings=upcoming_meetings, conflicts=meeting_conflicts)
 
     if request.method == 'POST':
         return flask.redirect(flask.url_for('auth.create_meeting'))

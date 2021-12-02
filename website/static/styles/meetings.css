@@ -12,6 +12,21 @@
     margin-right:20em;
     margin-top:2.5em;
     margin-bottom:2.5em;
+
+    box-shadow: 0.25em 0.25em;
+}
+
+.MeetingWithConflict
+{
+    background-color: #DE4343;
+    border-radius: 1.25em;
+    padding: 1.5em;
+    margin-left: 20em;
+    margin-right:20em;
+    margin-top:2.5em;
+    margin-bottom:2.5em;
+
+    box-shadow: 0.25em 0.25em;
 }
 
 #NoUpcomingMeetingsSpan
@@ -19,6 +34,15 @@
     display:table;
     margin:0 auto;
     margin-bottom: 1.25em;
+}
+
+.NoConflictLink
+{
+}
+
+.ConflictLink
+{
+    color: #00384a;
 }
 
 #ScheduleMeetingButton

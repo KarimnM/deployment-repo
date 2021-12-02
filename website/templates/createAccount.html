@@ -32,21 +32,21 @@
         <h1>Create Account</h1>
         <form method="POST">
             <div class="mb-3">
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-                <input type="text" class="form-control" id="address" name="address" placeholder="Full address">
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" value="{{form.get('firstName', '')}}">
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" value="{{form.get('lastName', '')}}">
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="{{form.get('email', '')}}">
+                <input type="text" class="form-control" id="address" name="address" placeholder="Full address" value="{{form.get('address', '')}}">
                 <input type="text" class="form-control" maxlength="9" id="eID" name="VNumber"
-                       placeholder="eID(Ex. V412312 ">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter a username">
+                       placeholder="eID(Ex. V412312 " value="{{form.get('VNumber', '')}}">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter a username" value="{{form.get('username', '')}}">
                 <input type="password" class="form-control" id="password" name="password"
-                       placeholder="Password must have 10 characters">
+                       placeholder="Password must have 10 characters" value="{{form.get('password', '')}}">
                 <input type="text" class="form-control" id="phonenumber" name="phoneNumber"
-                       placeholder="Phone number (Ex. 123-123-1234)">
+                       placeholder="Phone number (Ex. 123-123-1234)" value="{{form.get('phoneNumber', '')}}">
                 <input type="text" class="form-control" id="dob" name="dateOfBirth"
-                       placeholder="Date Of Birth (Ex. YYYY-MM-DD)">
+                       placeholder="Date Of Birth (Ex. YYYY-MM-DD)" value="{{form.get('dateOfBirth', '')}}">
                 <input type="text" class="form-control" id="discordUName" name="discordUName"
-                       placeholder="Discord username (Ex. discordname#1234)">
+                       placeholder="Discord username (Ex. discordname#1234)" value="{{form.get('discordUName', '')}}">
             </div>
             <button type="submit" id="submit" class="btn btn-default btn-lg">Create Account</button>
         </form>
